@@ -247,9 +247,7 @@ func (m *mutantExecutor) getTestArgs(pkg string) []string {
 	// Here we add some seconds to the timeout to be sure it's gremlins that catches the test
 	// timeout and not the test itself. The timeout on the test prevents the test.* processes
 	// from hanging forever.
-	args = append(args, "-timeout", (2*time.Second + m.testExecutionTime).String())
-	args = append(args, "-failfast")
-	args = append(args, "-count=1")
+	args = append(args, "-timeout", (2*time.Second + m.testExecutionTime).String(), "-failfast", "-count=1")
 
 	if m.testCPU != 0 {
 		args = append(args, "-cpu", fmt.Sprintf("%d", m.testCPU))
